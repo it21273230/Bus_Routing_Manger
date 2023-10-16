@@ -1,24 +1,34 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const busDetailsSchema = new Schema(
-  {
-    bus_no: {
-      type: String,
-      required: true,
-    },
+class BusDetailsModelSingleton {
+  constructor() {
+    if (!BusDetailsModelSingleton.instance) {
+      this.busDetailsSchema = new Schema(
+        {
+          bus_no: {
+            type: String,
+            required: true,
+          },
+  
+          driver_id: {
+            type: String,
+            required: true,
+          },
+  
+          driver_name: {
+            type: String,
+            required: true,
+          },
+        },
+        { timestamps: true }
+      );
+  
+      BusDetailsModelSingleton.instance = mongoose.model("busdetails", this.busDetailsSchema);
+    }
+    return BusDetailsModelSingleton.instance;
+  }
+}
 
-    driver_id: {
-      type: String,
-      required: true,
-    },
+module.exports = BusDetailsModelSingleton;
 
-    driver_name: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-)
-
-module.exports = mongoose.model("busdetails", busDetailsSchema);

@@ -1,4 +1,6 @@
-const BusDetails = require('../models/BusDetailsModel')
+const BusDetailsModelSingleton = require('../models/BusDetailsModel');
+const BusDetails = new BusDetailsModelSingleton();
+
 const {checkBusNoExistsAndRemove} = require('./busDetailsController')
 const mongoose = require('mongoose')
 

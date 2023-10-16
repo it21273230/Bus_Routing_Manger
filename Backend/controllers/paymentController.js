@@ -1,4 +1,6 @@
-const PaymentDetails = require("../models/paymentModel")
+const PaymentModelSingleton = require('../models/paymentModel');
+const PaymentDetails = new PaymentModelSingleton();
+
 const mongoose = require ('mongoose')
 
 //get all Payments

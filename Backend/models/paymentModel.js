@@ -1,22 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const paymentSchema = new Schema(
-    {
-        bus_id: {
+class PaymentModelSingleton {
+  constructor() {
+    if (!PaymentModelSingleton.instance) {
+      this.paymentSchema = new Schema(
+        {
+          bus_id: {
             type: String,
             require: true,
-        },
-        date: {
+          },
+          date: {
             type: Date,
             require: true,
-        },
-        total: {
+          },
+          total: {
             type: Number,
             require: true,
+          },
         },
+        { timestamps: true }
+      );
+      PaymentModelSingleton.instance = mongoose.model('payment', this.paymentSchema);
+    }
+    return PaymentModelSingleton.instance;
+  }
+}
 
-    },
-    {timestamps: true}
-)
-module.exports = mongoose.model('payment', paymentSchema);
+module.exports = PaymentModelSingleton;
