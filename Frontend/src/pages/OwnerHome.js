@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
+
 const TotalIncome = () => {
   const [totalIncomeData, setTotalIncomeData] = useState({});
 
@@ -42,29 +43,31 @@ const TotalIncome = () => {
     <h1>Total Income </h1>
     <br/>
     <br/>
-    <table>
-      <thead>
-        <tr>
-          <th>Bus ID</th>
-          <th></th>
-          <th></th>
-          <th>Total Income</th>
-        </tr>
-        
-      </thead>
-      <br></br>
-      <tbody>
-        
-        {Object.entries(totalIncomeData).map(([bus_id, totalAmount]) => (
-          <tr key={bus_id}>
-            <td>{bus_id}</td>
-            <td></td>
-            <td></td>
-            <td>{totalAmount.toFixed(2)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Bus ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th scope="col">Total Income</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    {Object.entries(totalIncomeData).map(([bus_id, totalAmount]) => (
+            <tr key={bus_id}>
+              <td></td>
+              <td>{bus_id}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Rs.  {totalAmount.toFixed(2)}</td>
+            </tr>
+          ))}
+  </tbody>
+</table>
   </div>
   );
 
